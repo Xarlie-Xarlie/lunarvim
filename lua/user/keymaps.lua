@@ -24,4 +24,5 @@ lvim.builtin.which_key.mappings["z"] = {
   n = { ":CopilotChatRename<CR>", mode = "v", "Rename the variable" },
   s = { ":CopilotChatSave ", mode = "n", "Save the history" },
   l = { ":CopilotChatLoad ", mode = "n", "Load the history" },
+  p = { ":lua CustomGeneratePullRequest()<CR>", mode = "n", "Generate Pull Request" },
 }
