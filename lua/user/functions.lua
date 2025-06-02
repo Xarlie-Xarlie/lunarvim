@@ -75,8 +75,8 @@ function RunJestInFloatingWindow(current_file)
   local cmd
   if file_extension == "exs" then
     cmd = "mix test " .. current_file
-  elseif file_extension == "js" then
-    cmd = "npm test " .. current_file
+  elseif file_extension == "js" or file_extension == "ts" then
+    cmd = "npx jest " .. current_file
   else
     vim.api.nvim_buf_set_lines(jest_buffer, 0, -1, false, { "Unsupported file type: " .. current_file })
     return

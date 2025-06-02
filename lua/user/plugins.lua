@@ -43,6 +43,13 @@ lvim.plugins = {
     },
     build = "make tiktoken",
     opts = {
+      mappings = {
+        reset = {
+          normal = "<C-r>",
+          insert = "<C-r>",
+        },
+      },
+      temperature = 0.2,
       prompts = {
         Rename = {
           prompt = "Please rename the variable correctly in give selection based on context",

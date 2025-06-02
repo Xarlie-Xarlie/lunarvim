@@ -19,7 +19,7 @@ lvim.builtin.terminal.execs = {
 -- Default LunarVim Configs
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
-lvim.colorscheme = "catppuccin"
+lvim.colorscheme = "catppuccin-mocha"
 lvim.transparent_window = true
 
 -- NvimTree Settings
