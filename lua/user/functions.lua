@@ -14,27 +14,29 @@ end
 
 -- Custom Generate Pull Request
 function CustomGeneratePullRequest()
-  local task_link = vim.fn.input("Task link (format: [ERP-111 Task Name](https://linear.com/...)): ")
   local commit_count = vim.fn.input("Number of commits to include: ")
 
   local pull_request_prompt = [[
-Please generate a pull request description based on the changes made in the code.
+Please generate a pull request description, in pt-br, based on the changes made in the code.
 Use the pull request template structure.
-For the '### Issues Resolved' section, include the Linear task link I provided.
 Summarize the commits to create a comprehensive PR description.
 
 In the section '### Principais pontos a serem revisados', mark everygthing with an x.
 ]]
 
-  if task_link ~= "" and commit_count ~= "" then
-    require("CopilotChat").ask(
-      string.format("%s\n\n### Issues Resolved: %s\n\n", pull_request_prompt, task_link),
+  if commit_count ~= "" then
+    require("CopilotChat").ask(pull_request_prompt,
       {
-        context = { string.format("system:`git log -n %s`", commit_count), "file:`.github/pull_request_template.md`" },
+        context = {
+          string.format(
+            "system:`git log --stat --patch -n %s`",
+            commit_count
+          ),
+          "file:`.github/pull_request_template.md`" },
       }
     )
   else
-    print("Both task link and number of commits are required.")
+    print("Number of commits are required.")
   end
 end
 
